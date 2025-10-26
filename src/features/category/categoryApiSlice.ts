@@ -28,14 +28,14 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: category,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Category', id }, { type: 'Category', id: 'LIST' }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Category', id }, { type: 'Category', id: 'LIST' }],
     }),
     deleteCategory: builder.mutation<ApiResponse<void>, number>({
       query: (id) => ({
         url: `/categories/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Category', id }, { type: 'Category', id: 'LIST' }],
+      invalidatesTags: (_result, _error, id) => [{ type: 'Category', id }, { type: 'Category', id: 'LIST' }],
     }),
   }),
 });

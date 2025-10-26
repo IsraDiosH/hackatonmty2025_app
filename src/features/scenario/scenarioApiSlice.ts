@@ -28,14 +28,14 @@ export const scenarioApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: scenario,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Scenario', id }, { type: 'Scenario', id: 'LIST' }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Scenario', id }, { type: 'Scenario', id: 'LIST' }],
     }),
     deleteScenario: builder.mutation<ApiResponse<void>, number>({
       query: (id) => ({
         url: `/scenario/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Scenario', id }, { type: 'Scenario', id: 'LIST' }],
+      invalidatesTags: (_result, _error, id) => [{ type: 'Scenario', id }, { type: 'Scenario', id: 'LIST' }],
     }),
   }),
 });

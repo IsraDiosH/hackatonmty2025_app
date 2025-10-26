@@ -28,14 +28,14 @@ export const businessApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: business,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Business', id }, { type: 'Business', id: 'LIST' }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Business', id }, { type: 'Business', id: 'LIST' }],
     }),
     deleteBusiness: builder.mutation<ApiResponse<void>, number>({
       query: (id) => ({
         url: `/businesses/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Business', id }, { type: 'Business', id: 'LIST' }],
+      invalidatesTags: (_result, _error, id) => [{ type: 'Business', id }, { type: 'Business', id: 'LIST' }],
     }),
   }),
 });

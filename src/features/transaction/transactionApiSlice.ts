@@ -28,14 +28,14 @@ export const transactionApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: transaction,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Transaction', id }, { type: 'Transaction', id: 'LIST' }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Transaction', id }, { type: 'Transaction', id: 'LIST' }],
     }),
     deleteTransaction: builder.mutation<ApiResponse<void>, number>({
       query: (id) => ({
         url: `/transaction/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Transaction', id }, { type: 'Transaction', id: 'LIST' }],
+      invalidatesTags: (_result, _error, id) => [{ type: 'Transaction', id }, { type: 'Transaction', id: 'LIST' }],
     }),
   }),
 });
