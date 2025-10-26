@@ -67,11 +67,11 @@ const drawerWidth = 260;
 
 const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
-  { text: 'Negocios', icon: <BusinessIcon />, path: '/dashboard/businesses' },
-  { text: 'Categorías', icon: <CategoryIcon />, path: '/dashboard/categories' },
-  { text: 'Escenarios', icon: <ScenarioIcon />, path: '/dashboard/scenarios' },
-  { text: 'Transacciones', icon: <TransactionIcon />, path: '/dashboard/transactions' },
-  { text: 'Calculadora', icon: <CalculatorIcon />, path: '/dashboard/calculator' },
+  { text: 'Businesses', icon: <BusinessIcon />, path: '/dashboard/businesses' },
+  { text: 'Categories', icon: <CategoryIcon />, path: '/dashboard/categories' },
+  { text: 'Scenarios', icon: <ScenarioIcon />, path: '/dashboard/scenarios' },
+  { text: 'Transactions', icon: <TransactionIcon />, path: '/dashboard/transactions' },
+  { text: 'Calculator', icon: <CalculatorIcon />, path: '/dashboard/calculator' },
 ];
 
 export default function DashboardPage() {
@@ -96,13 +96,16 @@ export default function DashboardPage() {
   };
 
   const drawer = (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <Box sx={{ p: 3, borderBottom: '1px solid', borderColor: 'divider' }}>
-        <Typography variant="h6" fontWeight="700" sx={{ color: 'text.primary' }}>
-          FinanceApp
-        </Typography>
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-          Gestión Financiera
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #4A6CF7 0%, #3A5BD6 100%)' }}>
+      <Box sx={{ p: 3, borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+        <Box
+          component="img"
+          src="/numio.png"
+          alt="NUMIO"
+          sx={{ height: 36, width: 'auto', display: 'block', mb: 0.5 }}
+        />
+        <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 1)' }}>
+          Finance Manager
         </Typography>
       </Box>
       
@@ -117,17 +120,18 @@ export default function DashboardPage() {
                   borderRadius: 2,
                   py: 1.5,
                   px: 2,
-                  bgcolor: isActive ? 'rgba(0, 0, 0, 0.04)' : 'transparent',
-                  color: isActive ? 'primary.main' : 'text.secondary',
+                  bgcolor: isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+                  color: '#ffffff',
                   '&:hover': {
-                    bgcolor: 'rgba(0, 0, 0, 0.04)',
+                    bgcolor: 'rgba(255, 255, 255, 0.1)',
                   },
                   transition: 'all 0.2s',
+                  backdropFilter: isActive ? 'blur(10px)' : 'none',
                 }}
               >
                 <ListItemIcon sx={{ 
                   minWidth: 40,
-                  color: isActive ? 'primary.main' : 'text.secondary',
+                  color: '#ffffff',
                 }}>
                   {item.icon}
                 </ListItemIcon>
@@ -144,24 +148,24 @@ export default function DashboardPage() {
         })}
       </List>
 
-      <Box sx={{ p: 2, borderTop: '1px solid', borderColor: 'divider' }}>
+      <Box sx={{ p: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
         <ListItemButton
           onClick={handleLogout}
           sx={{
             borderRadius: 2,
             py: 1.5,
             px: 2,
+            color: '#ffffff',
             '&:hover': {
-              bgcolor: 'rgba(239, 68, 68, 0.08)',
-              color: 'error.main',
+              bgcolor: 'rgba(239, 68, 68, 0.2)',
             },
           }}
         >
-          <ListItemIcon sx={{ minWidth: 40, color: 'inherit' }}>
+          <ListItemIcon sx={{ minWidth: 40, color: '#ffffff' }}>
             <LogoutIcon />
           </ListItemIcon>
           <ListItemText 
-            primary="Cerrar Sesión"
+            primary="Log Out"
             primaryTypographyProps={{
               fontSize: '0.9rem',
               fontWeight: 500,
@@ -182,9 +186,10 @@ export default function DashboardPage() {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          bgcolor: 'background.paper',
+          bgcolor: '#ffffff',
           borderBottom: '1px solid',
           borderColor: 'divider',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
         }}
       >
         <Toolbar sx={{ py: 1 }}>
@@ -192,17 +197,23 @@ export default function DashboardPage() {
             color="inherit"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' }, color: 'text.primary' }}
+            sx={{ mr: 2, display: { sm: 'none' }, color: 'primary.main' }}
           >
             <MenuIcon />
           </IconButton>
           
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="body2" color="text.secondary">
-              Bienvenido de vuelta
+            <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 800 }}>
+              Welcome back
             </Typography>
-            <Typography variant="subtitle1" fontWeight="600" color="text.primary">
-              {user?.username || 'Usuario'}
+            <Typography variant="subtitle1" fontWeight="700" sx={{ 
+              color: 'text.primary',
+              background: 'linear-gradient(135deg, #4A6CF7 0%, #42E2B8 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}>
+              {user?.username || 'User'}
             </Typography>
           </Box>
 
@@ -211,6 +222,7 @@ export default function DashboardPage() {
             sx={{
               display: { xs: 'none', sm: 'flex' },
               color: 'text.secondary',
+              borderRadius: 2,
               '&:hover': {
                 color: 'error.main',
                 bgcolor: 'rgba(239, 68, 68, 0.08)',
@@ -218,7 +230,7 @@ export default function DashboardPage() {
             }}
             startIcon={<LogoutIcon />}
           >
-            Salir
+            Logout
           </Button>
         </Toolbar>
       </AppBar>
@@ -252,8 +264,7 @@ export default function DashboardPage() {
               boxSizing: 'border-box', 
               width: drawerWidth,
               border: 'none',
-              borderRight: '1px solid',
-              borderColor: 'divider',
+              boxShadow: '4px 0 24px rgba(74, 108, 247, 0.08)',
             },
           }}
           open
@@ -267,6 +278,7 @@ export default function DashboardPage() {
         sx={{
           flexGrow: 1,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          bgcolor: 'background.default',
         }}
       >
         <Toolbar />
@@ -402,10 +414,10 @@ function DashboardHome() {
     return (
       <Box>
         <Typography variant="h4" fontWeight="700" gutterBottom>
-          Bienvenido
+          Welcome
         </Typography>
         <Alert severity="info" sx={{ mt: 2 }}>
-          Para comenzar, crea tu primer negocio desde el menú "Negocios".
+          To get started, create your first business from the "Businesses" menu.
         </Alert>
       </Box>
     );
@@ -427,16 +439,16 @@ function DashboardHome() {
             Dashboard
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Vista general de tu actividad financiera
+            Overview of your financial activity
           </Typography>
         </Box>
         
         {businesses.length > 1 && (
           <FormControl size="small" sx={{ minWidth: 200 }}>
-            <InputLabel>Negocio</InputLabel>
+            <InputLabel>Business</InputLabel>
             <Select
               value={selectedBusinessId}
-              label="Negocio"
+              label="Business"
               onChange={(e) => setSelectedBusinessId(Number(e.target.value))}
             >
               {businesses.map((business) => (
@@ -455,82 +467,124 @@ function DashboardHome() {
         gap: 3,
         mb: 4 
       }}>
-        <Card>
+        <Card sx={{ 
+          background: 'linear-gradient(135deg, #42E2B8 0%, #32C79E 100%)',
+          color: '#fff',
+          border: 'none',
+        }}>
           <CardContent>
             <Box display="flex" justifyContent="space-between" alignItems="flex-start">
               <Box>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  Ingresos Totales
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }} gutterBottom>
+                  Total Income
                 </Typography>
-                <Typography variant="h5" fontWeight="700">
+                <Typography variant="h5" fontWeight="700" sx={{ mb: 0.5 }}>
                   ${metrics.totalIncome.toLocaleString()}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {metrics.incomeCount} transacciones
+                <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.8)' }}>
+                  {metrics.incomeCount} transactions
                 </Typography>
               </Box>
-              <TrendingUpIcon sx={{ color: 'success.main', fontSize: 28 }} />
+              <Box sx={{ 
+                bgcolor: 'rgba(255,255,255,0.2)', 
+                borderRadius: 2, 
+                p: 1.5,
+                backdropFilter: 'blur(10px)',
+              }}>
+                <TrendingUpIcon sx={{ fontSize: 28 }} />
+              </Box>
             </Box>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card sx={{ 
+          background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+          color: '#fff',
+          border: 'none',
+        }}>
           <CardContent>
             <Box display="flex" justifyContent="space-between" alignItems="flex-start">
               <Box>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  Gastos Totales
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }} gutterBottom>
+                  Total Expenses
                 </Typography>
-                <Typography variant="h5" fontWeight="700">
+                <Typography variant="h5" fontWeight="700" sx={{ mb: 0.5 }}>
                   ${metrics.totalExpenses.toLocaleString()}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {metrics.expenseCount} transacciones
+                <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.8)' }}>
+                  {metrics.expenseCount} transactions
                 </Typography>
               </Box>
-              <TrendingDownIcon sx={{ color: 'error.main', fontSize: 28 }} />
+              <Box sx={{ 
+                bgcolor: 'rgba(255,255,255,0.2)', 
+                borderRadius: 2, 
+                p: 1.5,
+                backdropFilter: 'blur(10px)',
+              }}>
+                <TrendingDownIcon sx={{ fontSize: 28 }} />
+              </Box>
             </Box>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card sx={{ 
+          background: metrics.netProfit >= 0 
+            ? 'linear-gradient(135deg, #4A6CF7 0%, #3A5BD6 100%)'
+            : 'linear-gradient(135deg, #F9D65C 0%, #E8C13F 100%)',
+          color: '#fff',
+          border: 'none',
+        }}>
           <CardContent>
             <Box display="flex" justifyContent="space-between" alignItems="flex-start">
               <Box>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  Balance Neto
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }} gutterBottom>
+                  Net Profit
                 </Typography>
-                <Typography 
-                  variant="h5" 
-                  fontWeight="700"
-                  sx={{ color: metrics.netProfit >= 0 ? 'success.main' : 'error.main' }}
-                >
+                <Typography variant="h5" fontWeight="700" sx={{ mb: 0.5 }}>
                   ${metrics.netProfit.toLocaleString()}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {metrics.netProfit >= 0 ? 'Positivo' : 'Negativo'}
+                <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.8)' }}>
+                  {metrics.netProfit >= 0 ? 'Positive' : 'Negative'}
                 </Typography>
               </Box>
-              <BalanceIcon sx={{ color: 'primary.main', fontSize: 28 }} />
+              <Box sx={{ 
+                bgcolor: 'rgba(255,255,255,0.2)', 
+                borderRadius: 2, 
+                p: 1.5,
+                backdropFilter: 'blur(10px)',
+              }}>
+                <BalanceIcon sx={{ fontSize: 28 }} />
+              </Box>
             </Box>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card sx={{ 
+          background: 'linear-gradient(135deg, #1E1E1E 0%, #2d2d2d 100%)',
+          color: '#fff',
+          border: 'none',
+        }}>
           <CardContent>
             <Box display="flex" justifyContent="space-between" alignItems="flex-start">
               <Box>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  Balance Actual
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }} gutterBottom>
+                  Current Balance
                 </Typography>
-                <Typography variant="h5" fontWeight="700">
+                <Typography variant="h5" fontWeight="700" sx={{ mb: 0.5 }}>
                   ${metrics.currentBalance.toLocaleString()}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {metrics.transactionCount} transacciones
+                <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.8)' }}>
+                  {metrics.transactionCount} transactions
                 </Typography>
               </Box>
-              <BalanceIcon sx={{ color: 'primary.main', fontSize: 28 }} />
+              <Box sx={{ 
+                bgcolor: 'rgba(255,255,255,0.2)', 
+                borderRadius: 2, 
+                p: 1.5,
+                backdropFilter: 'blur(10px)',
+              }}>
+                <BalanceIcon sx={{ fontSize: 28 }} />
+              </Box>
             </Box>
           </CardContent>
         </Card>
@@ -542,47 +596,47 @@ function DashboardHome() {
         gap: 3,
         mb: 3 
       }}>
-        <Paper sx={{ p: 3 }}>
-          <Typography variant="h6" fontWeight="600" gutterBottom>
-            Flujo de Efectivo
+        <Paper sx={{ p: 3, borderRadius: 3, boxShadow: '0 4px 20px rgba(74, 108, 247, 0.08)' }}>
+          <Typography variant="h6" fontWeight="700" gutterBottom sx={{ color: 'text.primary' }}>
+            Cash Flow
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-            Últimos 30 días
+            Last 30 days
           </Typography>
           {timelineData.length > 0 ? (
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={timelineData}>
                 <defs>
                   <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#42E2B8" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#42E2B8" stopOpacity={0}/>
                   </linearGradient>
                   <linearGradient id="colorExpense" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#4A6CF7" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#4A6CF7" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis dataKey="date" style={{ fontSize: 12 }} stroke="#6b7280" />
                 <YAxis style={{ fontSize: 12 }} stroke="#6b7280" />
                 <Tooltip />
-                <Area type="monotone" dataKey="income" stroke="#10b981" fill="url(#colorIncome)" name="Ingresos" />
-                <Area type="monotone" dataKey="expense" stroke="#ef4444" fill="url(#colorExpense)" name="Gastos" />
+                <Area type="monotone" dataKey="income" stroke="#42E2B8" strokeWidth={3} fill="url(#colorIncome)" name="Income" />
+                <Area type="monotone" dataKey="expense" stroke="#4A6CF7" strokeWidth={3} fill="url(#colorExpense)" name="Expenses" />
               </AreaChart>
             </ResponsiveContainer>
           ) : (
             <Box textAlign="center" py={8}>
-              <Typography color="text.secondary">No hay datos disponibles</Typography>
+              <Typography color="text.secondary">No data available</Typography>
             </Box>
           )}
         </Paper>
 
-        <Paper sx={{ p: 3 }}>
-          <Typography variant="h6" fontWeight="600" gutterBottom>
-            Categorías
+        <Paper sx={{ p: 3, borderRadius: 3, boxShadow: '0 4px 20px rgba(74, 108, 247, 0.08)' }}>
+          <Typography variant="h6" fontWeight="700" gutterBottom sx={{ color: 'text.primary' }}>
+            Categories
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-            Distribución por categoría
+            Distribution by category
           </Typography>
           {categoryData.length > 0 ? (
             <ResponsiveContainer width="100%" height={300}>
@@ -599,7 +653,7 @@ function DashboardHome() {
                   {categoryData.map((entry, index) => (
                     <Cell 
                       key={`cell-${index}`} 
-                      fill={entry.type === 'income' ? '#10b981' : '#ef4444'}
+                      fill={entry.type === 'income' ? '#42E2B8' : '#4A6CF7'}
                     />
                   ))}
                 </Pie>
@@ -608,18 +662,18 @@ function DashboardHome() {
             </ResponsiveContainer>
           ) : (
             <Box textAlign="center" py={8}>
-              <Typography color="text.secondary">No hay datos disponibles</Typography>
+              <Typography color="text.secondary">No data available</Typography>
             </Box>
           )}
         </Paper>
       </Box>
 
-      <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" fontWeight="600" gutterBottom>
-          Top Categorías
+      <Paper sx={{ p: 3, borderRadius: 3, boxShadow: '0 4px 20px rgba(74, 108, 247, 0.08)' }}>
+        <Typography variant="h6" fontWeight="700" gutterBottom sx={{ color: 'text.primary' }}>
+          Top Categories
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          Principales categorías por monto
+          Top categories by amount
         </Typography>
         {categoryData.length > 0 ? (
           <ResponsiveContainer width="100%" height={250}>
@@ -630,14 +684,14 @@ function DashboardHome() {
               <Tooltip formatter={(value: number) => `$${value.toLocaleString()}`} />
               <Bar dataKey="amount" radius={[8, 8, 0, 0]}>
                 {categoryData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.type === 'income' ? '#10b981' : '#ef4444'} />
+                  <Cell key={`cell-${index}`} fill={entry.type === 'income' ? '#42E2B8' : '#4A6CF7'} />
                 ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-        ) : (
+          ) : (
           <Box textAlign="center" py={8}>
-            <Typography color="text.secondary">No hay datos disponibles</Typography>
+            <Typography color="text.secondary">No data available</Typography>
           </Box>
         )}
       </Paper>

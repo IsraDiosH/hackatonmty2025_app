@@ -47,7 +47,7 @@ export default function ScenariosPage() {
 
   const [selectedBusinessId, setSelectedBusinessId] = useState<number>(0);
 
-  // Actualizar el negocio seleccionado cuando se carguen los negocios
+  // Update the selected business when businesses are loaded
   useEffect(() => {
     if (businesses.length > 0 && selectedBusinessId === 0) {
       setSelectedBusinessId(businesses[0].id);

@@ -67,13 +67,31 @@ export default function RegisterPage() {
           alignItems: 'center',
         }}
       >
-        <Paper elevation={3} sx={{ padding: 4, width: '100%' }}>
-          <Typography component="h1" variant="h5" align="center" gutterBottom>
-            Create Account
-          </Typography>
-          <Typography variant="body2" align="center" color="text.secondary" sx={{ mb: 3 }}>
-            Financial Manager - Hackaton MTY 2025
-          </Typography>
+        <Paper elevation={3} sx={{ 
+          padding: 4, 
+          width: '100%',
+          borderRadius: 3,
+          boxShadow: '0 8px 32px rgba(74, 108, 247, 0.15)',
+        }}>
+          <Box sx={{ textAlign: 'center', mb: 3 }}>
+            <Box sx={{ 
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, #4A6CF7 0%, #42E2B8 100%)',
+              borderRadius: 3,
+              p: 2,
+              mb: 2,
+            }}>
+              <Typography variant="h4" sx={{ color: '#fff', fontWeight: 700, letterSpacing: '1px' }}>
+                NUMIO
+              </Typography>
+            </Box>
+            <Typography component="h1" variant="h5" fontWeight="700" gutterBottom>
+              Create Account
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Financial Manager - Hackaton MTY 2025
+            </Typography>
+          </Box>
 
           {error && (
             <Alert severity="error" sx={{ mb: 2 }}>
@@ -130,13 +148,25 @@ export default function RegisterPage() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ 
+                mt: 3, 
+                mb: 2,
+                py: 1.5,
+                fontSize: '1rem',
+              }}
               disabled={isLoading}
             >
               {isLoading ? 'Creating Account...' : 'Sign Up'}
             </Button>
             <Box sx={{ textAlign: 'center' }}>
-              <Link component={RouterLink} to="/login" variant="body2">
+              <Link component={RouterLink} to="/login" variant="body2" sx={{ 
+                color: 'primary.main',
+                fontWeight: 600,
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline',
+                }
+              }}>
                 Already have an account? Sign In
               </Link>
             </Box>

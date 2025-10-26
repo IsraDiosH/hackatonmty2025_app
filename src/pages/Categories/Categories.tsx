@@ -48,7 +48,7 @@ export default function CategoriesPage() {
 
   const [selectedBusinessId, setSelectedBusinessId] = useState<number>(0);
 
-  // Actualizar el negocio seleccionado cuando se carguen los negocios
+  // Update the selected business when businesses are loaded
   useEffect(() => {
     if (businesses.length > 0 && selectedBusinessId === 0) {
       setSelectedBusinessId(businesses[0].id);
@@ -221,8 +221,9 @@ export default function CategoriesPage() {
                   <TableCell>
                     <Chip
                       label={category.type}
-                      color={category.type === 'income' ? 'success' : 'error'}
+                      color={category.type === 'income' ? 'success' : 'primary'}
                       size="small"
+                      sx={{ fontWeight: 600 }}
                     />
                   </TableCell>
                   <TableCell align="center">

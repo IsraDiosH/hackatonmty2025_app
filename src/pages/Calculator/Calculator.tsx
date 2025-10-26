@@ -52,7 +52,7 @@ export default function CalculatorPage() {
   const [selectedScenarioId, setSelectedScenarioId] = useState<number>(0);
   const [monthsToPredict, setMonthsToPredict] = useState<number>(6);
 
-  // Actualizar el negocio seleccionado cuando se carguen los negocios
+  // Update the selected business when businesses are loaded
   useEffect(() => {
     if (businesses.length > 0 && selectedBusinessId === 0) {
       setSelectedBusinessId(businesses[0].id);
